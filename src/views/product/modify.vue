@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="product" label-width="120px">
-      <el-form-item label="Activity product_id">
+      <el-form-item label="product_id">
         <el-input v-model="product.product_id" />
       </el-form-item>
       <el-form-item label="Activity name">
@@ -14,7 +14,10 @@
         <el-input v-model="product.brief" />
       </el-form-item>
       <el-form-item label="Activity photo">
-        <el-input v-model="product.brief" />
+        <el-input v-model="product.photo" />
+      </el-form-item>
+      <el-form-item label="Activity photo">
+        <img :src="product.photo" style="max-width: 220px">
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Confirm</el-button>

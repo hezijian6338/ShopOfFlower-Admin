@@ -23,18 +23,29 @@
           <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
+      <el-table-column label="photo" width="110" align="center">
+        <template slot-scope="scope">
+          <img :src="scope.row.photo" style="width: 110px">
+        </template>
+      </el-table-column>
       <el-table-column label="brief" width="110" align="center">
         <template slot-scope="scope">
           {{ scope.row.brief }}
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="200">
+      <el-table-column label="操作" width="100">
+        <template slot-scope="scope">
+          <!-- <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button> -->
+          <el-button type="text" size="small" @click="checkSku(scope.row.product_id)">查看 sku</el-button>
+        </template>
+      </el-table-column>
+      <el-table-column label="操作" width="100">
         <template slot-scope="scope">
           <!-- <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button> -->
           <el-button type="text" size="small" @click="modifySku(scope.row.product_id)">添加 sku</el-button>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="200">
+      <el-table-column label="操作" width="100">
         <template slot-scope="scope">
           <!-- <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button> -->
           <el-button type="text" size="small" @click="modify(scope.row.product_id)">编辑</el-button>
@@ -75,6 +86,9 @@ export default {
       } else {
         this.$router.push({ path: '/sku/create', query: { productId: productId }})
       }
+    },
+    checkSku(productId) {
+      this.$router.push({ path: '/sku/list', query: { productId: productId }})
     }
   }
 }
