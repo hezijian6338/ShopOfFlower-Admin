@@ -15,6 +15,36 @@ export function getInfo(phone) {
   })
 }
 
+export function getInfoById({ id }) {
+  return request({
+    url: '/user/' + id,
+    method: 'get'
+  })
+}
+
+export function creatUser(user) {
+  return request({
+    url: '/user',
+    method: 'post',
+    data: user
+  })
+}
+
+export function modifyUser(user) {
+  return request({
+    url: '/user/' + user.id,
+    method: 'put',
+    data: user
+  })
+}
+
+export function deleteUser({ id }) {
+  return request({
+    url: '/user/' + id,
+    method: 'delete'
+  })
+}
+
 // export function logout() {
 //   return request({
 //     url: '/vue-admin-template/user/logout',
