@@ -10,9 +10,12 @@
       <el-form-item label="Activity photo">
         <el-input v-model="sku.photo" />
       </el-form-item>
+      <el-form-item label="photo preview">
+        <img :src="sku.photo" style="max-width: 220px">
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Confirm</el-button>
-        <!-- <el-button @click="onCancel">Cancel</el-button> -->
+        <el-button type="primary" @click="$router.go(-1)">Back</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -45,7 +48,7 @@ export default {
   },
   mounted() {
     this.productId = this.$route.query.productId
-    // this.fetchData()
+    this.fetchData()
   },
   methods: {
     fetchData() {
@@ -58,13 +61,23 @@ export default {
     onSubmit() {
       // this.$message('submit!')
       createSku(this.sku).then(res => {
-        const { result, id } = res
-        this.$message(result)
+        const { result, id } = res.data
+        if (result) {
+          this.$message({
+            message: '成功!',
+            type: 'success'
+          })
+        }
         if (this.product.sku_ids === '') {
           this.product.sku_ids = `${id}`
         } else {
-          const skuIds = this.product.sku_ids.split(' ').split(',')
+          const skuIds = this.product.sku_ids.trim().split(',')
+          console.log(`已有的 skuId ${skuIds}`)
+
           skuIds.push(id)
+
+          console.log(`现有 skuId ${skuIds}`)
+          this.product.sku_ids = skuIds.toString()
         }
 
         if (result) {

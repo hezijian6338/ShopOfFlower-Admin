@@ -10,7 +10,7 @@
       <el-form-item label="Activity photo">
         <el-input v-model="sku.photo" />
       </el-form-item>
-      <el-form-item label="Activity photo">
+      <el-form-item label="photo preview">
         <img :src="sku.photo" style="max-width: 220px">
       </el-form-item>
       <el-form-item>

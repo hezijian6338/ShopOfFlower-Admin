@@ -47,7 +47,7 @@
       <el-table-column label="操作" width="100">
         <template slot-scope="scope">
           <!-- <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button> -->
-          <el-button type="text" size="small" @click="modifySku(scope.row.product_id)">添加 sku</el-button>
+          <el-button type="text" size="small" @click="modifySku(scope.row)">添加 sku</el-button>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="100">
@@ -66,7 +66,7 @@ import { getProductList } from '@/api/product'
 export default {
   data() {
     return {
-      list: null,
+      list: [],
       listLoading: true
     }
   },
@@ -84,13 +84,19 @@ export default {
     modify(productId) {
       this.$router.push({ path: '/product/modify', query: { productId: productId }})
     },
-    modifySku(productId) {
-      const ids = this.list.sku_ids
-      if (ids.lenght === 0 || ids === undefined || ids === null) {
-        this.$router.push({ path: '/sku/modify', query: { productId: productId }})
-      } else {
-        this.$router.push({ path: '/sku/create', query: { productId: productId }})
-      }
+    modifySku(product) {
+      const ids = product.sku_ids.trim().split(',')
+      const productId = product.product_id
+
+      console.log(ids)
+
+      console.log(product)
+
+      // if (ids.lenght !== 0) {
+      // this.$router.push({ path: '/sku/modify', query: { productId: productId }})
+      // } else {
+      this.$router.push({ path: '/sku/create', query: { productId: productId }})
+      // }
     },
     checkSku(skuIds) {
       this.$router.push({ path: '/sku/list', query: { skuIds: skuIds }})
