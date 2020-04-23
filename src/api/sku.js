@@ -9,7 +9,7 @@ export function getSku({ skuId }) {
 
 export function modifySku(sku) {
   return request({
-    url: '/sku/' + sku.sku_id,
+    url: '/sku/' + sku.id,
     method: 'put',
     data: sku
   })

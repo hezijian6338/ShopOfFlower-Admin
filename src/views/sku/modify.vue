@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-form ref="sku" :model="sku" label-width="120px">
-      <el-form-item label="Activity standard">
+      <el-form-item label="standard">
         <el-input v-model="sku.standard" />
       </el-form-item>
       <el-form-item label="Activity price">
@@ -10,9 +10,12 @@
       <el-form-item label="Activity photo">
         <el-input v-model="sku.photo" />
       </el-form-item>
+      <el-form-item label="Activity photo">
+        <img :src="sku.photo" style="max-width: 220px">
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Confirm</el-button>
-        <!-- <el-button @click="onCancel">Cancel</el-button> -->
+        <el-button type="primary" @click="goBack">Back</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -34,21 +37,25 @@ export default {
   },
   mounted() {
     this.skuId = this.$route.query.skuId
-    // this.fetchData()
+    this.fetchData()
   },
   methods: {
     fetchData() {
       // this.listLoading = true
-      getSku(this.skuId).then(response => {
+      getSku({ skuId: this.skuId }).then(response => {
         this.sku = response.data
         // this.listLoading = false
       })
     },
     onSubmit() {
-      // this.$message('submit!')
       modifySku(this.sku).then(res => {
-        const { message } = res
-        this.$message(message)
+        const { data } = res
+        if (data) {
+          this.$message({
+            message: '成功!',
+            type: 'success'
+          })
+        }
       })
     },
     onCancel() {
@@ -56,6 +63,9 @@ export default {
         message: 'cancel!',
         type: 'warning'
       })
+    },
+    goBack() {
+      this.$router.go(-1)
     }
   }
 }

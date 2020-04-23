@@ -13,7 +13,7 @@
           {{ scope.$index }}
         </template>
       </el-table-column>
-      <el-table-column label="product_id">
+      <el-table-column width="110" label="product_id">
         <template slot-scope="scope">
           {{ scope.row.product_id }}
         </template>
@@ -28,15 +28,20 @@
           <img :src="scope.row.photo" style="width: 110px">
         </template>
       </el-table-column>
-      <el-table-column label="brief" width="110" align="center">
+      <el-table-column label="brief" width="180" align="center">
         <template slot-scope="scope">
           {{ scope.row.brief }}
+        </template>
+      </el-table-column>
+      <el-table-column label="content" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.content }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="100">
         <template slot-scope="scope">
           <!-- <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button> -->
-          <el-button type="text" size="small" @click="checkSku(scope.row.product_id)">查看 sku</el-button>
+          <el-button type="text" size="small" @click="checkSku(scope.row.sku_ids)">查看 sku</el-button>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="100">
@@ -87,8 +92,8 @@ export default {
         this.$router.push({ path: '/sku/create', query: { productId: productId }})
       }
     },
-    checkSku(productId) {
-      this.$router.push({ path: '/sku/list', query: { productId: productId }})
+    checkSku(skuIds) {
+      this.$router.push({ path: '/sku/list', query: { skuIds: skuIds }})
     }
   }
 }

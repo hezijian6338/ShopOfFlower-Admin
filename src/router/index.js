@@ -85,17 +85,47 @@ export const constantRoutes = [
   },
 
   {
-    path: '/form',
+    path: '/sku',
     component: Layout,
+    redirect: '/sku/list',
+    name: 'sku',
+    meta: { title: '规格', icon: 'example' },
+    hidden: true,
     children: [
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        path: 'list',
+        name: 'list',
+        component: () => import('@/views/sku/list'),
+        meta: { title: '规格列表', icon: 'table' }
+      },
+      {
+        path: 'create',
+        name: 'create',
+        component: () => import('@/views/sku/create'),
+        meta: { title: '创建规格', icon: 'tree' }
+      },
+      {
+        path: 'modify',
+        name: 'modify',
+        component: () => import('@/views/sku/modify'),
+        meta: { title: '修改规格', icon: 'tree' },
+        hidden: true
       }
     ]
   },
+
+  // {
+  //   path: '/form',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       name: 'Form',
+  //       component: () => import('@/views/form/index'),
+  //       meta: { title: 'Form', icon: 'form' }
+  //     }
+  //   ]
+  // },
 
   // {
   //   path: 'external-link',

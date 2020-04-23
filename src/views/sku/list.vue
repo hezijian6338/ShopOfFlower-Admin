@@ -18,17 +18,18 @@
           {{ scope.row.standard }}
         </template>
       </el-table-column>
-      <el-table-column label="price" width="110" align="center">
+      <el-table-column label="price" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.price }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="photo" width="110" align="center">
+      <el-table-column label="photo" width="210" align="center">
         <template slot-scope="scope">
-          {{ scope.row.photo }}
+          <!-- {{ scope.row.photo }} -->
+          <img :src="scope.row.photo" style="width: 210px">
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="200">
+      <el-table-column label="操作" align="center" width="110">
         <template slot-scope="scope">
           <!-- <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button> -->
           <el-button type="text" size="small" @click="modify(scope.row.id)">编辑</el-button>
@@ -44,7 +45,7 @@ import { getSku } from '@/api/sku'
 export default {
   data() {
     return {
-      list: null,
+      list: [],
       listLoading: true,
       skuIds: []
     }
@@ -55,11 +56,11 @@ export default {
   methods: {
     fetchData() {
       this.skuIds = this.$route.query.skuIds
-      const ids = this.skuIds.split(' ').split(',')
-      ids.array.forEach(skuId => {
+      const ids = this.skuIds.split(',')
+      ids.forEach(skuId => {
         this.listLoading = true
-        getSku(skuId).then(response => {
-          this.list = response.data
+        getSku({ skuId }).then(response => {
+          this.list.push(response.data)
           this.listLoading = false
         })
       })
