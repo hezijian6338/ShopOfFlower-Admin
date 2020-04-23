@@ -8,7 +8,12 @@
         <el-input v-model="product.name" />
       </el-form-item>
       <el-form-item label="Activity content">
-        <el-input v-model="product.content" />
+        <el-input
+          v-model="product.content"
+          type="textarea"
+          :rows="2"
+          placeholder="请输入内容"
+        />
       </el-form-item>
       <el-form-item label="Activity brief">
         <el-input v-model="product.brief" />

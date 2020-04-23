@@ -8,13 +8,21 @@
         <el-input v-model="product.name" />
       </el-form-item>
       <el-form-item label="Activity content">
-        <el-input v-model="product.content" />
+        <el-input
+          v-model="product.content"
+          type="textarea"
+          :rows="2"
+          placeholder="请输入内容"
+        />
       </el-form-item>
       <el-form-item label="Activity brief">
         <el-input v-model="product.brief" />
       </el-form-item>
       <el-form-item label="Activity photo">
         <el-input v-model="product.photo" />
+      </el-form-item>
+      <el-form-item label="photo preview">
+        <img :src="product.photo" style="max-width: 220px">
       </el-form-item>
       <!-- <el-form-item label="Activity phone"> -->
       <el-button type="primary" @click="onSubmit">Confirm</el-button>
@@ -43,8 +51,13 @@ export default {
     onSubmit() {
       // this.$message('submit!')
       createProduct(this.product).then(res => {
-        const { message } = res
-        this.$message(message)
+        const { data } = res
+        if (data) {
+          this.$message({
+            message: '成功!',
+            type: 'success'
+          })
+        }
       })
     },
     onCancel() {

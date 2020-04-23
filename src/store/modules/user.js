@@ -39,7 +39,8 @@ const actions = {
       login({ phone: username.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
-        commit('SET_PHONE', username)
+        commit('SET_PHONE', data.user.phone)
+        commit('SET_NAME', data.user.name)
         setToken(data.token)
         resolve()
       }).catch(error => {
