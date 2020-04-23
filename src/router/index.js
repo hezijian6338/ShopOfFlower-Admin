@@ -114,6 +114,28 @@ export const constantRoutes = [
     ]
   },
 
+  {
+    path: '/order',
+    component: Layout,
+    redirect: '/order/list',
+    name: 'order',
+    meta: { title: '订单', icon: 'example' },
+    children: [
+      {
+        path: 'list',
+        name: 'list',
+        component: () => import('@/views/order/list'),
+        meta: { title: '订单列表', icon: 'table' }
+      },
+      {
+        path: 'modify',
+        name: 'modify',
+        component: () => import('@/views/order/modify'),
+        meta: { title: '修改订单', icon: 'tree' }
+      }
+    ]
+  },
+
   // {
   //   path: '/form',
   //   component: Layout,

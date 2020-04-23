@@ -45,7 +45,7 @@
       </el-table-column>
       <el-table-column label="state" width="110" align="center">
         <template slot-scope="scope">
-          <span> {{ statusSwitch(scope.row.status) }}</span>
+          <span> {{ statusSwitch(scope.row.state) }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="100">
@@ -70,6 +70,8 @@ export default {
   computed: {
     statusSwitch() {
       return function(status) {
+        console.log(status)
+
         if (status === 0) { return '下单成功' }
         if (status === 1) { return '制作中' }
         if (status === 2) { return '制作完成' }

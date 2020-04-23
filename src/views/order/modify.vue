@@ -22,7 +22,7 @@
       <el-form-item label="Activity state">
         <el-select v-model="order.state" placeholder="请选择">
           <el-option
-            v-for="item in options"
+            v-for="item of options"
             :key="item.value"
             :label="item.label"
             :value="item.value"
@@ -31,7 +31,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Confirm</el-button>
-        <!-- <el-button @click="onCancel">Cancel</el-button> -->
+        <el-button type="primary" @click="$router.go(-1)">Back</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -45,16 +45,14 @@ export default {
     return {
       orderId: '',
       order: {
-        id: String,
-        product_id: String,
-        name: String,
-        sku_id: String,
-        standard: String,
-        price: Number,
-        photo: String,
-        state: Number,
-        created_date: Number,
-        updated_date: Number
+        id: '',
+        product_id: '',
+        name: '',
+        sku_id: '',
+        standard: '',
+        price: 0,
+        photo: '',
+        state: 0
       },
       options: [
         {
@@ -66,7 +64,7 @@ export default {
           label: '制作中'
         },
         {
-          value: 1,
+          value: 2,
           label: '制作完成'
         }
       ]
@@ -84,8 +82,13 @@ export default {
     },
     onSubmit() {
       modifyOrder(this.order).then(res => {
-        const { message } = res
-        this.$message(message)
+        const { data } = res
+        if (data) {
+          this.$message({
+            message: '成功!',
+            type: 'success'
+          })
+        }
       })
     },
     onCancel() {

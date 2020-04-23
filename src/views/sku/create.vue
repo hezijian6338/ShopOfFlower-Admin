@@ -72,11 +72,11 @@ export default {
           this.product.sku_ids = `${id}`
         } else {
           const skuIds = this.product.sku_ids.trim().split(',')
-          console.log(`已有的 skuId ${skuIds}`)
+          // console.log(`已有的 skuId ${skuIds}`)
 
           skuIds.push(id)
 
-          console.log(`现有 skuId ${skuIds}`)
+          // console.log(`现有 skuId ${skuIds}`)
           this.product.sku_ids = skuIds.toString()
         }
 
