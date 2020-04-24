@@ -73,8 +73,10 @@ export default {
         console.log(status)
 
         if (status === 0) { return '下单成功' }
-        if (status === 1) { return '制作中' }
-        if (status === 2) { return '制作完成' }
+        if (status === 1) { return '未发货' }
+        if (status === 2) { return '发货' }
+        // if (status === 1) { return '制作中' }
+        // if (status === 2) { return '制作完成' }
       }
     }
   },
