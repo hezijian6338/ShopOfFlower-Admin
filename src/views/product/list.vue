@@ -41,7 +41,7 @@
       <el-table-column label="操作" width="100">
         <template slot-scope="scope">
           <!-- <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button> -->
-          <el-button type="text" size="small" @click="checkSku(scope.row.sku_ids)">查看 sku</el-button>
+          <el-button v-if="scope.row.sku_ids !== ''" type="text" size="small" @click="checkSku(scope.row)">查看 sku</el-button>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="100">
@@ -98,8 +98,8 @@ export default {
       this.$router.push({ path: '/sku/create', query: { productId: productId }})
       // }
     },
-    checkSku(skuIds) {
-      this.$router.push({ path: '/sku/list', query: { skuIds: skuIds }})
+    checkSku({ product_id }) {
+      this.$router.push({ path: '/sku/list', query: { productId: product_id }})
     }
   }
 }

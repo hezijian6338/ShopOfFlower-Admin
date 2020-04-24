@@ -16,13 +16,14 @@
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Confirm</el-button>
         <el-button type="primary" @click="goBack">Back</el-button>
+        <!-- <el-button type="danger" @click="onDelete">Delete</el-button> -->
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-import { modifySku, getSku } from '@/api/sku'
+import { modifySku, getSku, delSku } from '@/api/sku'
 
 export default {
   data() {
@@ -62,6 +63,18 @@ export default {
       this.$message({
         message: 'cancel!',
         type: 'warning'
+      })
+    },
+    onDelete() {
+      delSku({ skuId: this.sku.id }).then(res => {
+        const { code } = res
+        if (code === 200) {
+          this.$message({
+            message: '删除成功!',
+            type: 'success'
+          })
+          this.$router.push({ path: '/product/list' })
+        }
       })
     },
     goBack() {
