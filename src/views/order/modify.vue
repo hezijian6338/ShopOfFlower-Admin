@@ -61,11 +61,11 @@ export default {
         },
         {
           value: 1,
-          label: '制作中'
+          label: '未发货'
         },
         {
           value: 2,
-          label: '制作完成'
+          label: '发货'
         }
       ]
     }
