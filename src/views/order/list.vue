@@ -13,6 +13,16 @@
           {{ scope.$index }}
         </template>
       </el-table-column>
+      <el-table-column label="user_name">
+        <template slot-scope="scope">
+          {{ scope.row.user.name }}
+        </template>
+      </el-table-column>
+      <el-table-column label="user_phone">
+        <template slot-scope="scope">
+          {{ scope.row.user.phone }}
+        </template>
+      </el-table-column>
       <el-table-column label="product_id">
         <template slot-scope="scope">
           {{ scope.row.product_id }}

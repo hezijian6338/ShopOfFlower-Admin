@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getOrderList() {
   return request({
-    url: '/order/list',
+    url: '/order/with/user/list',
     method: 'get'
   })
 }
